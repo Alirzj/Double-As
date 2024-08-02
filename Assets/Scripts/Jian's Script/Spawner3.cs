@@ -32,7 +32,7 @@ public class Spawner3 : MonoBehaviour
     {
         for (int i = 0; i < objectNum; i++)
         {
-            SpawnRandomItems(new Vector2(Random.Range(-3f, 3f), Random.Range(-4f, 4f)));
+            SpawnRandomItems(new Vector2(Random.Range(-2f, 2f), Random.Range(-2f, 2f)));
         }
     }
 
