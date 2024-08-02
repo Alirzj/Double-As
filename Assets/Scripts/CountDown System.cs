@@ -8,7 +8,9 @@ public class CountDownSystem : MonoBehaviour
     public TextMeshProUGUI preCountdownText; // TextMeshProUGUI for the 3, 2, 1 countdown
     public TextMeshProUGUI countdownText; // TextMeshProUGUI for the actual timer
     public GameObject gameOverCanvas; // Canvas to activate when countdown ends
+    public GameObject highScoreUI; // UI element for displaying high score
 
+    private bool gameOver = false;
     private float countdownTime;
     private bool gameActive = false;
 
@@ -63,6 +65,9 @@ public class CountDownSystem : MonoBehaviour
 
     void GameOver()
     {
+        gameOver = true;
+        highScoreUI.SetActive(true);
+        ScoreManager.instance.CheckAndSaveHighestScore(gameOver);
         countdownText.text = "0:00";
         gameOverCanvas.SetActive(true);
         Time.timeScale = 0f; // Stop the game
@@ -70,13 +75,13 @@ public class CountDownSystem : MonoBehaviour
 
     public void CorrectChoice()
     {
-        countdownTime += 10f;
+        countdownTime += 10f; // Gain 10 seconds for a correct choice
         UpdateCountdownText();
     }
 
     public void WrongChoice()
     {
-        countdownTime -= 10f;
+        countdownTime -= 10f; // Lose 10 seconds for a wrong choice
         UpdateCountdownText();
 
         if (countdownTime <= 0)

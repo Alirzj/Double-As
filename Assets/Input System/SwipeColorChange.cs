@@ -83,11 +83,13 @@ public class SwipeColorChange : MonoBehaviour
             {
                 ChangeColor(rightSwipeBadColor);
                 countdownSystem.WrongChoice();
+                ScoreManager.instance.SubtractScore(10);
             }
             else
             {
                 ChangeColor(rightSwipeSafeColor);
                 countdownSystem.CorrectChoice();
+                ScoreManager.instance.AddScore(20);
             }
         }
         else // Down swipe
@@ -96,11 +98,13 @@ public class SwipeColorChange : MonoBehaviour
             {
                 ChangeColor(downSwipeBadColor);
                 countdownSystem.CorrectChoice();
+                ScoreManager.instance.AddScore(20);
             }
             else
             {
                 ChangeColor(downSwipeSafeColor);
                 countdownSystem.WrongChoice();
+                ScoreManager.instance.SubtractScore(10);
             }
         }
     }
