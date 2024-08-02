@@ -11,6 +11,7 @@ public class SwipeColorChange : MonoBehaviour
     public Color downSwipeSafeColor = Color.red; // Color when swiped down and all tags are "Safe"
 
     private List<Transform> childObjects = new List<Transform>();
+    private CountDownSystem countdownSystem;
 
     void Start()
     {
@@ -18,6 +19,7 @@ public class SwipeColorChange : MonoBehaviour
         {
             childObjects.Add(child);
         }
+        countdownSystem = FindObjectOfType<CountDownSystem>();
     }
 
     void Update()
@@ -46,14 +48,14 @@ public class SwipeColorChange : MonoBehaviour
                         {
                             if (swipeDirection.x > 0)
                             {
-                                HandleSwipe(rightSwipeBadColor, rightSwipeSafeColor);
+                                HandleSwipe(true);
                             }
                         }
                         else
                         {
                             if (swipeDirection.y < 0)
                             {
-                                HandleSwipe(downSwipeBadColor, downSwipeSafeColor);
+                                HandleSwipe(false);
                             }
                         }
                     }
@@ -63,7 +65,7 @@ public class SwipeColorChange : MonoBehaviour
         }
     }
 
-    void HandleSwipe(Color badColor, Color safeColor)
+    void HandleSwipe(bool isRightSwipe)
     {
         bool hasBadTag = false;
         foreach (var child in childObjects)
@@ -75,13 +77,31 @@ public class SwipeColorChange : MonoBehaviour
             }
         }
 
-        if (hasBadTag)
+        if (isRightSwipe)
         {
-            ChangeColor(badColor);
+            if (hasBadTag)
+            {
+                ChangeColor(rightSwipeBadColor);
+                countdownSystem.WrongChoice();
+            }
+            else
+            {
+                ChangeColor(rightSwipeSafeColor);
+                countdownSystem.CorrectChoice();
+            }
         }
-        else
+        else // Down swipe
         {
-            ChangeColor(safeColor);
+            if (hasBadTag)
+            {
+                ChangeColor(downSwipeBadColor);
+                countdownSystem.CorrectChoice();
+            }
+            else
+            {
+                ChangeColor(downSwipeSafeColor);
+                countdownSystem.WrongChoice();
+            }
         }
     }
 
