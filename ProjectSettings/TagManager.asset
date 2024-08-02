@@ -9,6 +9,7 @@ TagManager:
   - Triangle
   - Bad
   - Safe
+  - Bag
   layers:
   - Default
   - TransparentFX

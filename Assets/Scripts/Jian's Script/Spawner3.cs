@@ -6,48 +6,58 @@ using UnityEngine;
 public class Item
 {
     public string Name;
-
     public GameObject Prefab;
     [Range(0f, 100f)] public float Chance = 100f;
-
     [HideInInspector] public double _weight;
 }
 
 public class Spawner3 : MonoBehaviour
 {
     [SerializeField] private Item[] items;
-
     private double accumulatedWeights;
     private System.Random rand = new System.Random();
+    private List<GameObject> spawnedItems = new List<GameObject>();
 
     private void Awake()
     {
-        CalculatedWeights();
+        CalculateWeights();
     }
 
     public int objectNum;
 
-    // Start is called before the first frame update
+    private rightCheck checkOut;
+    private leftCheck checkIn;
+    private bool hasSpawned = false;
+
     void Start()
     {
-        for (int i = 0; i < objectNum; i++)
-        {
-            SpawnRandomItems(new Vector2(Random.Range(-2f, 2f), Random.Range(-2f, 2f)));
-        }
+        checkOut = FindObjectOfType<rightCheck>();
+        checkIn = FindObjectOfType<leftCheck>();
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (checkIn != null && checkIn.bagIn && !hasSpawned)
+        {
+            for (int i = 0; i < objectNum; i++)
+            {
+                SpawnRandomItems(new Vector2(Random.Range(-2f, 2f), Random.Range(-2f, 2f)));
+            }
+            hasSpawned = true;
+        }
 
+        if (checkOut != null && checkOut.bagOut)
+        {
+            DestroySpawnedItems();
+            hasSpawned = false; // Reset the flag to allow spawning again when bagIn becomes true next time
+        }
     }
 
     private void SpawnRandomItems(Vector2 position)
     {
         Item randomItem = items[GetRandomItemIndex()];
-
-        Instantiate(randomItem.Prefab, position, Quaternion.identity, transform);
-
+        GameObject spawnedItem = Instantiate(randomItem.Prefab, position, Quaternion.identity, transform);
+        spawnedItems.Add(spawnedItem);
 
         Debug.Log("<color=" + randomItem.Name + ">?</color> Chance: <b>" + randomItem.Chance + "</b>%");
     }
@@ -66,7 +76,7 @@ public class Spawner3 : MonoBehaviour
         return 0;
     }
 
-    private void CalculatedWeights()
+    private void CalculateWeights()
     {
         accumulatedWeights = 0f;
         foreach (Item item in items)
@@ -75,5 +85,15 @@ public class Spawner3 : MonoBehaviour
             item._weight = accumulatedWeights;
         }
     }
+
+    private void DestroySpawnedItems()
+    {
+        foreach (GameObject item in spawnedItems)
+        {
+            Destroy(item);
+        }
+        spawnedItems.Clear();
+    }
 }
+
 
