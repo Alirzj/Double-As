@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BagCheckTest : MonoBehaviour
 {
-    public CountdownTimer countdownTimer; // Reference to the CountdownTimer component
+    public CountDownSystem countdownTimer; // Reference to the CountdownTimer component
 
 
     void Start()
@@ -10,7 +10,7 @@ public class BagCheckTest : MonoBehaviour
         // Ensure the CountdownTimer component is assigned in the Inspector
         if (countdownTimer == null)
         {
-            countdownTimer = FindObjectOfType<CountdownTimer>();
+            countdownTimer = FindObjectOfType<CountDownSystem>();
         }
     }
 

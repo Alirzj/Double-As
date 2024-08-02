@@ -2,7 +2,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 
-public class CountdownTimer : MonoBehaviour
+public class CountDownSystem : MonoBehaviour
 {
     public float startTimeMinutes = 1f; // The time to countdown from in minutes
     public TextMeshProUGUI preCountdownText; // TextMeshProUGUI for the 3, 2, 1 countdown
