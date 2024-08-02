@@ -165,7 +165,7 @@ MonoBehaviour:
     Prefab: {fileID: 1214729188988438229, guid: b41d1aa7f59af3e41be723692d86b35e, type: 3}
     Chance: 30
     _weight: 0
-  objectNum: 10
+  objectNum: 5
 --- !u!4 &1407492885
 Transform:
   m_ObjectHideFlags: 0
