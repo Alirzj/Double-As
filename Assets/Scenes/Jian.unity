@@ -123,6 +123,64 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &1407492883
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1407492885}
+  - component: {fileID: 1407492884}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1407492884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407492883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ac2ece21b689547afdb799d1c1e30b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+  - Name: Circle
+    Prefab: {fileID: 2884350611395363311, guid: eb94d573611a43148bfd52e667b9042a, type: 3}
+    Chance: 50
+    _weight: 0
+  - Name: Square
+    Prefab: {fileID: 7425257950817842024, guid: 26acae0823a89cd4da26713942e94f14, type: 3}
+    Chance: 20
+    _weight: 0
+  - Name: Triangle
+    Prefab: {fileID: 1214729188988438229, guid: b41d1aa7f59af3e41be723692d86b35e, type: 3}
+    Chance: 30
+    _weight: 0
+  objectNum: 10
+--- !u!4 &1407492885
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407492883}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1476483040
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,3 +278,4 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1476483043}
+  - {fileID: 1407492885}
