@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 107106649}
   m_Layer: 0
   m_Name: Triangle (3)
-  m_TagString: Bad
+  m_TagString: Safe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 336579146}
   m_Layer: 0
   m_Name: Triangle (5)
-  m_TagString: Bad
+  m_TagString: Safe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 640195046}
   m_Layer: 0
   m_Name: Triangle
-  m_TagString: Bad
+  m_TagString: Safe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1060,7 +1060,7 @@ GameObject:
   - component: {fileID: 1485748002}
   m_Layer: 0
   m_Name: Triangle (1)
-  m_TagString: Bad
+  m_TagString: Safe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1494,7 +1494,7 @@ GameObject:
   - component: {fileID: 1808335538}
   m_Layer: 0
   m_Name: Triangle (2)
-  m_TagString: Bad
+  m_TagString: Safe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1680,7 +1680,7 @@ GameObject:
   - component: {fileID: 2008100154}
   m_Layer: 0
   m_Name: Triangle (4)
-  m_TagString: Bad
+  m_TagString: Safe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
