@@ -15,6 +15,7 @@ public class SwipeColorChange : MonoBehaviour
     public List<Transform> childObjects = new List<Transform>();
     private HashSet<Transform> registeredChildren = new HashSet<Transform>();
     private CountDownSystem countdownSystem;
+    public bool hasBadTag;
 
     void Start()
     {
@@ -28,6 +29,7 @@ public class SwipeColorChange : MonoBehaviour
     {
         DetectSwipe();
         RegisterChildren();
+        BadTagCheck();
     }
 
     void DetectSwipe()
@@ -83,9 +85,9 @@ public class SwipeColorChange : MonoBehaviour
         Debug.Log("Total children registered: " + childObjects.Count);
     }
 
-    void HandleSwipe(bool isRightSwipe)
+    void BadTagCheck()
     {
-        bool hasBadTag = false;
+        hasBadTag = false;
         foreach (var child in childObjects)
         {
             if (child != null && child.CompareTag("Bad"))
@@ -94,6 +96,11 @@ public class SwipeColorChange : MonoBehaviour
                 break;
             }
         }
+    }
+
+    void HandleSwipe(bool isRightSwipe)
+    {
+        
 
         if (isRightSwipe)
         {
@@ -133,7 +140,7 @@ public class SwipeColorChange : MonoBehaviour
         RemoveAllChildren();
     }
 
-    void ShowCanvas(GameObject canvas)
+    public void ShowCanvas(GameObject canvas)
     {
         canvas.SetActive(true);
         StartCoroutine(HideCanvasAfterDelay(canvas, 0.5f));
@@ -150,7 +157,7 @@ public class SwipeColorChange : MonoBehaviour
         GetComponent<Renderer>().material.color = color;
     }
 
-    void RemoveAllChildren()
+    public void RemoveAllChildren()
     {
         foreach (Transform child in childObjects)
         {

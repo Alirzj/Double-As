@@ -17,40 +17,42 @@ public class Spawner3 : MonoBehaviour
     private double accumulatedWeights;
     private System.Random rand = new System.Random();
     private List<GameObject> spawnedItems = new List<GameObject>();
+    private SwipeColorChange swipeColorChange;
 
     private void Awake()
     {
         CalculateWeights();
     }
 
-    public int objectNum;
+    [Range(1, 10)] public int minObjectNum = 1;
+    [Range(1, 10)] public int maxObjectNum = 5;
 
     private rightCheck checkOut;
     private leftCheck checkIn;
-    //private SwipeColorChange swipe;
     private bool hasSpawned = false;
 
     void Start()
     {
         checkOut = FindObjectOfType<rightCheck>();
         checkIn = FindObjectOfType<leftCheck>();
-        //swipe = GetComponent<SwipeColorChange>();
+        swipeColorChange = GetComponent<SwipeColorChange>();
     }
 
     void Update()
     {
         if (checkIn != null && checkIn.bagIn && !hasSpawned)
         {
+            int objectNum = Random.Range(minObjectNum, maxObjectNum + 1); // Randomize objectNum within the specified range
             for (int i = 0; i < objectNum; i++)
             {
-                SpawnRandomItems(new Vector2(Random.Range(-2f, 2f), Random.Range(-2f, 2f)));
+                SpawnRandomItems(new Vector2(Random.Range(-2f, 2f), Random.Range(-2f, 1f)));
             }
             hasSpawned = true;
         }
 
         if (checkOut != null && checkOut.bagOut)
         {
-            DestroySpawnedItems();
+            //DestroySpawnedItems();
             hasSpawned = false; // Reset the flag to allow spawning again when bagIn becomes true next time
         }
     }
@@ -58,7 +60,8 @@ public class Spawner3 : MonoBehaviour
     private void SpawnRandomItems(Vector2 position)
     {
         Item randomItem = items[GetRandomItemIndex()];
-        GameObject spawnedItem = Instantiate(randomItem.Prefab, position, Quaternion.identity, transform);
+        Quaternion randomRotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
+        GameObject spawnedItem = Instantiate(randomItem.Prefab, position, randomRotation, transform);
         spawnedItems.Add(spawnedItem);
 
         Debug.Log("<color=" + randomItem.Name + ">?</color> Chance: <b>" + randomItem.Chance + "</b>%");
@@ -95,7 +98,6 @@ public class Spawner3 : MonoBehaviour
             Destroy(item);
         }
         spawnedItems.Clear();
+        swipeColorChange.childObjects.Clear();
     }
 }
-
-

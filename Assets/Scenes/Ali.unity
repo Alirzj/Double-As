@@ -336,7 +336,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.40445065}
+  m_Offset: {x: -0.27055812, y: 0.055497527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -347,7 +347,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 4.669846}
+  m_Size: {x: 0.45888376, y: 3.7499497}
   m_EdgeRadius: 0
 --- !u!4 &90313453
 Transform:
@@ -358,7 +358,7 @@ Transform:
   m_GameObject: {fileID: 90313450}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.93, y: -0.5322881, z: -9.906425}
+  m_LocalPosition: {x: -2.51, y: -0.5322881, z: -9.906425}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -778,7 +778,6 @@ GameObject:
   - component: {fileID: 780209009}
   - component: {fileID: 780209008}
   - component: {fileID: 780209007}
-  - component: {fileID: 780209011}
   m_Layer: 0
   m_Name: Square (1)
   m_TagString: Bag
@@ -919,30 +918,12 @@ Transform:
   m_GameObject: {fileID: 780209006}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.76, y: -0.95339596, z: 0}
+  m_LocalPosition: {x: -4.73, y: -0.95339596, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &780209011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 780209006}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51ca7f9f697dfd24fbe0d87a2c703b69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rightSwipeBadColor: {r: 1, g: 0, b: 0, a: 1}
-  downSwipeBadColor: {r: 0, g: 1, b: 0, a: 1}
-  rightSwipeSafeColor: {r: 0, g: 1, b: 0, a: 1}
-  downSwipeSafeColor: {r: 1, g: 0, b: 0, a: 1}
-  canvasgood: {fileID: 0}
-  canvasbad: {fileID: 0}
 --- !u!1 &897750454
 GameObject:
   m_ObjectHideFlags: 0
@@ -1627,6 +1608,8 @@ MonoBehaviour:
   downSwipeSafeColor: {r: 1, g: 0, b: 0, a: 1}
   canvasgood: {fileID: 921396670}
   canvasbad: {fileID: 1432651993}
+  childObjects: []
+  hasBadTag: 0
 --- !u!212 &1497459666
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1719,7 +1702,8 @@ MonoBehaviour:
     Prefab: {fileID: 7425257950817842024, guid: 26acae0823a89cd4da26713942e94f14, type: 3}
     Chance: 17.7
     _weight: 0
-  objectNum: 5
+  minObjectNum: 3
+  maxObjectNum: 6
 --- !u!1 &1573636950
 GameObject:
   m_ObjectHideFlags: 0
@@ -1751,6 +1735,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bagOut: 0
+  canvasbad: {fileID: 1432651993}
+  canvasgood: {fileID: 921396670}
 --- !u!61 &1573636952
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1783,7 +1769,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.41251636}
+  m_Offset: {x: 0.29761302, y: 0.06546879}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1794,7 +1780,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 4.7715783}
+  m_Size: {x: 0.40477395, y: 3.815607}
   m_EdgeRadius: 0
 --- !u!4 &1573636953
 Transform:
@@ -1805,7 +1791,7 @@ Transform:
   m_GameObject: {fileID: 1573636950}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.92, y: -0.5322881, z: -9.906425}
+  m_LocalPosition: {x: 2.61, y: -0.5322881, z: -9.906425}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2432,7 +2418,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0.000015244684, z: 175.1569, w: 0}
+  m_margin: {x: 0, y: 0.000015244684, z: 112.94852, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

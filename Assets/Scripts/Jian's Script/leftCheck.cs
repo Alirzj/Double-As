@@ -6,12 +6,16 @@ using UnityEngine;
 public class leftCheck : MonoBehaviour
 {
     public bool bagIn;
+    //private SwipeColorChange swipe;
+
     //private rightCheck checkOut;
 
     // Start is called before the first frame update
     void Start()
     {
         //checkOut = FindObjectOfType<rightCheck>();
+        //swipe = FindObjectOfType<SwipeColorChange>();
+
     }
 
     // Update is called once per frame
@@ -32,6 +36,7 @@ public class leftCheck : MonoBehaviour
         if (collision.gameObject.tag == "Bag")
         {
             bagIn = true;
+            //swipe.swiped = false;
         }
     }
 
