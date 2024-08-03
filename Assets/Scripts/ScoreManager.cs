@@ -6,8 +6,10 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager instance;
     public TextMeshProUGUI currentScoreText; // Reference to the TextMeshProUGUI component for displaying the current score
     public TextMeshProUGUI highestScoreText; // Reference to the TextMeshProUGUI component for displaying the highest score
+    public TextMeshProUGUI FinalScoreText;
 
     private int currentScore;
+    private int FinalScore;
     private int highestScore;
 
     void Awake()
@@ -28,18 +30,21 @@ public class ScoreManager : MonoBehaviour
     {
         LoadScore();
         currentScore = 0; // Start with a score of 0
+        FinalScore = 0;
         UpdateScoreText();
     }
 
     public void AddScore(int amount)
     {
         currentScore += amount;
+        FinalScore += amount;
         UpdateScoreText();
     }
 
     public void SubtractScore(int amount)
     {
         currentScore -= amount;
+        FinalScore -= amount;
         if (currentScore < 0) currentScore = 0; // Ensure score doesn't go below 0
         UpdateScoreText();
     }
@@ -54,6 +59,11 @@ public class ScoreManager : MonoBehaviour
         {
             highestScoreText.text = "Highest Score: " + highestScore.ToString();
         }
+        if (FinalScore != null)
+        {
+            FinalScoreText.text = "Your Score: " + FinalScore.ToString();
+        }
+
     }
 
     public void CheckAndSaveHighestScore(bool gameOver)

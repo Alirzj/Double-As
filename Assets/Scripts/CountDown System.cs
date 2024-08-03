@@ -9,6 +9,7 @@ public class CountDownSystem : MonoBehaviour
     public TextMeshProUGUI countdownText; // TextMeshProUGUI for the actual timer
     public GameObject gameOverCanvas; // Canvas to activate when countdown ends
     public GameObject highScoreUI; // UI element for displaying high score
+    public AudioSource tickAudio; // AudioSource for the ticking sound
 
     private bool gameOver = false;
     private float countdownTime;
@@ -33,7 +34,7 @@ public class CountDownSystem : MonoBehaviour
         yield return new WaitForSecondsRealtime(1f);
         preCountdownText.text = "1";
         yield return new WaitForSecondsRealtime(1f);
-        preCountdownText.text = "Go!";
+        preCountdownText.text = "Go!!";
         yield return new WaitForSecondsRealtime(1f);
 
         preCountdownText.gameObject.SetActive(false);
@@ -69,6 +70,15 @@ public class CountDownSystem : MonoBehaviour
         int minutes = Mathf.FloorToInt(countdownTime / 60F);
         int seconds = Mathf.FloorToInt(countdownTime % 60F);
         countdownText.text = string.Format("{0:0}:{1:00}", minutes, seconds);
+
+        if (countdownTime <= 10 && !tickAudio.isPlaying)
+        {
+            tickAudio.Play();
+        }
+        else if (countdownTime > 10 && tickAudio.isPlaying)
+        {
+            tickAudio.Stop();
+        }
     }
 
     void GameOver()
@@ -79,6 +89,11 @@ public class CountDownSystem : MonoBehaviour
         gameOverCanvas.SetActive(true);
         highScoreUI.SetActive(true);
         Time.timeScale = 0f; // Stop the game
+
+        if (tickAudio.isPlaying)
+        {
+            tickAudio.Stop();
+        }
     }
 
     public void CorrectChoice()

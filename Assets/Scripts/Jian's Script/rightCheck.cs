@@ -12,7 +12,8 @@ public class rightCheck : MonoBehaviour
     public GameObject canvasgood;
     public AudioSource correctAudio;
     public AudioSource wrongAudio;
-
+    public Animator WrongCharacterAnimator;
+    public Animator CorrectCharacterAnimator;
 
     //private leftCheck checkIn;
 
@@ -44,24 +45,28 @@ public class rightCheck : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bag")
         {
-
+            swipe.ToggleSwipeDetection(false);
             bagOut = true;
 
             if (swipe.hasBadTag == true)
             {
+                WrongCharacterAnimator.SetTrigger("Start");
                 countDownSystem.WrongChoice();
                 scoreManager.SubtractScore(10);
                 swipe.ShowCanvas(canvasbad);
                 swipe.RemoveAllChildren();
                 wrongAudio.Play();
+
             }
             else if (swipe.hasBadTag == false)
             {
+                CorrectCharacterAnimator.SetTrigger("Start");
                 countDownSystem.CorrectChoice();
                 scoreManager.AddScore(20);
                 swipe.ShowCanvas(canvasgood);
                 swipe.RemoveAllChildren();
                 correctAudio.Play();
+                
             }
         }
 

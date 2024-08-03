@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour
     {
         buttons.Play();
         // Load the game scene (replace "GameScene" with your actual game scene name)
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Ali");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Ali 1");
     }
 
     public void OpenOptions()

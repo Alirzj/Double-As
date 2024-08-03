@@ -27,6 +27,8 @@ public class Spawner3 : MonoBehaviour
     [Range(1, 10)] public int minObjectNum = 1;
     [Range(1, 10)] public int maxObjectNum = 5;
 
+    public Vector2 spawnAreaSize = new Vector2(4f, 3f);
+    public bool showSpawnPoints = true;
     private rightCheck checkOut;
     private leftCheck checkIn;
     private downCheck checkDownOut;
@@ -47,22 +49,15 @@ public class Spawner3 : MonoBehaviour
             int objectNum = Random.Range(minObjectNum, maxObjectNum + 1); // Randomize objectNum within the specified range
             for (int i = 0; i < objectNum; i++)
             {
-                SpawnRandomItems(new Vector2(Random.Range(-2f, 2f), Random.Range(-2f, 1f)));
+                SpawnRandomItems(new Vector2(Random.Range(-spawnAreaSize.x / 2f, spawnAreaSize.x / 2f), Random.Range(-spawnAreaSize.y / 2f, spawnAreaSize.y / 2f)));
             }
             hasSpawned = true;
         }
 
         if (checkOut.bagOut || checkDownOut.bagDownOut)
         {
-            //DestroySpawnedItems();
             hasSpawned = false; // Reset the flag to allow spawning again when bagIn becomes true next time
         }
-
-        //if (checkDownOut != null && checkDownOut.bagDownOut)
-        //{
-        //    //DestroySpawnedItems();
-        //    hasSpawned = false; // Reset the flag to allow spawning again when bagIn becomes true next time
-        //}
     }
 
     private void SpawnRandomItems(Vector2 position)
@@ -107,5 +102,21 @@ public class Spawner3 : MonoBehaviour
         }
         spawnedItems.Clear();
         swipeColorChange.childObjects.Clear();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(transform.position, new Vector3(spawnAreaSize.x, spawnAreaSize.y, 0));
+
+        if (showSpawnPoints)
+        {
+            Gizmos.color = Color.red;
+            for (int i = 0; i < 10; i++) // Draw some example spawn points
+            {
+                Vector2 spawnPosition = new Vector2(Random.Range(-spawnAreaSize.x / 2f, spawnAreaSize.x / 2f), Random.Range(-spawnAreaSize.y / 2f, spawnAreaSize.y / 2f));
+                Gizmos.DrawSphere(transform.position + (Vector3)spawnPosition, 0.1f);
+            }
+        }
     }
 }

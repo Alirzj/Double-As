@@ -7,11 +7,13 @@ public class leftCheck : MonoBehaviour
 {
     public bool bagIn;
     private GameObject detectedBag;
+    private NewSwipe swipe;
 
     // Start is called before the first frame update
     void Start()
     {
-        // Initialization if needed
+        swipe = FindObjectOfType<NewSwipe>();
+        swipe.ToggleSwipeDetection(false);
     }
 
     // Update is called once per frame
@@ -24,6 +26,7 @@ public class leftCheck : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bag")
         {
+            swipe.ToggleSwipeDetection(true);
             bagIn = true;
             detectedBag = collision.gameObject;
         }

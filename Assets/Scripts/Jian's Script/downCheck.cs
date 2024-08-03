@@ -13,6 +13,8 @@ public class downCheck : MonoBehaviour
     public AudioSource correctAudio;
     public AudioSource wrongAudio;
 
+    public Animator WrongCharacterAnimator;
+    public Animator CorrectCharacterAnimator;
 
     //private leftCheck checkIn;
 
@@ -44,25 +46,44 @@ public class downCheck : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bag")
         {
-
+            swipe.ToggleSwipeDetection(false);
             bagDownOut = true;
 
             if (swipe.hasBadTag == true)
             {
+                CorrectCharacterAnimator.SetTrigger("Start");
+                countDownSystem.CorrectChoice();
+                scoreManager.AddScore(20);
+                swipe.ShowCanvas(canvasgood);
+                swipe.RemoveAllChildren();
+                correctAudio.Play();
+
+            }
+            else if (swipe.hasBadTag == false)
+            {
+                WrongCharacterAnimator.SetTrigger("Start");
                 countDownSystem.WrongChoice();
                 scoreManager.SubtractScore(10);
                 swipe.ShowCanvas(canvasbad);
                 swipe.RemoveAllChildren();
                 wrongAudio.Play();
             }
-            else if (swipe.hasBadTag == false)
-            {
-                countDownSystem.CorrectChoice();
-                scoreManager.AddScore(20);
-                swipe.ShowCanvas(canvasgood);
-                swipe.RemoveAllChildren();
-                correctAudio.Play();
-            }
+            //if (swipe.hasBadTag == true)
+            //{
+            //    countDownSystem.WrongChoice();
+            //    scoreManager.SubtractScore(10);
+            //    swipe.ShowCanvas(canvasbad);
+            //    swipe.RemoveAllChildren();
+            //    wrongAudio.Play();
+            //}
+            //else if (swipe.hasBadTag == false)
+            //{
+            //    countDownSystem.CorrectChoice();
+            //    scoreManager.AddScore(20);
+            //    swipe.ShowCanvas(canvasgood);
+            //    swipe.RemoveAllChildren();
+            //    correctAudio.Play();
+            //}
         }
 
         //if (swipe.hasBadTag == true)

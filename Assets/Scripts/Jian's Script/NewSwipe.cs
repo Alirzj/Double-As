@@ -10,8 +10,8 @@ public class NewSwipe : MonoBehaviour
     public Color downSwipeBadColor = Color.green; // Color when swiped down and "Bad" tag is found
     public Color rightSwipeSafeColor = Color.green; // Color when swiped right and all tags are "Safe"
     public Color downSwipeSafeColor = Color.red; // Color when swiped down and all tags are "Safe"
-    public GameObject canvasgood;
-    public GameObject canvasbad;
+    //public GameObject canvasgood;
+    //public GameObject canvasbad;
     public List<Transform> childObjects = new List<Transform>();
     private HashSet<Transform> registeredChildren = new HashSet<Transform>();
     private CountDownSystem countdownSystem;
@@ -23,7 +23,7 @@ public class NewSwipe : MonoBehaviour
     public Transform rightPosition;
     public Transform downPosition;
     private BagDestroy1 bagDestroy1;
-
+    public AudioSource swoosh;
 
     void Start()
     {
@@ -32,8 +32,8 @@ public class NewSwipe : MonoBehaviour
         bagDestroy1 = FindObjectOfType<BagDestroy1>();
 
 
-        canvasbad.SetActive(false);
-        canvasgood.SetActive(false);
+        //canvasbad.SetActive(false);
+        //canvasgood.SetActive(false);
     }
 
     void Update()
@@ -64,6 +64,7 @@ public class NewSwipe : MonoBehaviour
                         {
                             if (swipeDirection.x > 0)
                             {
+                                swoosh.Play();
                                 Debug.Log("Right Swipe Detected");
                                 HandleSwipe(true);
                             }
@@ -73,6 +74,7 @@ public class NewSwipe : MonoBehaviour
                             if (swipeDirection.y < 0)
                             {
                                 Debug.Log("Down Swipe Detected");
+                                swoosh.Play();
                                 HandleSwipe(false);
                                 bagDestroy1.SwipeBagDown();
                             }
@@ -146,7 +148,10 @@ public class NewSwipe : MonoBehaviour
         }
     }
     }
-
+    public void ToggleSwipeDetection(bool enable)
+    {
+        enabled = enable;
+    }
     public void ShowCanvas(GameObject canvas)
     {
         canvas.SetActive(true);
