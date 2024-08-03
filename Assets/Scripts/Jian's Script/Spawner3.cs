@@ -27,12 +27,14 @@ public class Spawner3 : MonoBehaviour
 
     private rightCheck checkOut;
     private leftCheck checkIn;
+    //private SwipeColorChange swipe;
     private bool hasSpawned = false;
 
     void Start()
     {
         checkOut = FindObjectOfType<rightCheck>();
         checkIn = FindObjectOfType<leftCheck>();
+        //swipe = GetComponent<SwipeColorChange>();
     }
 
     void Update()

@@ -12,15 +12,12 @@ public class SwipeColorChange : MonoBehaviour
     public Color downSwipeSafeColor = Color.red; // Color when swiped down and all tags are "Safe"
     public GameObject canvasgood;
     public GameObject canvasbad;
-    private List<Transform> childObjects = new List<Transform>();
+    public List<Transform> childObjects = new List<Transform>();
+    private HashSet<Transform> registeredChildren = new HashSet<Transform>();
     private CountDownSystem countdownSystem;
 
     void Start()
     {
-        foreach (Transform child in transform)
-        {
-            childObjects.Add(child);
-        }
         countdownSystem = FindObjectOfType<CountDownSystem>();
 
         canvasbad.SetActive(false);
@@ -30,6 +27,7 @@ public class SwipeColorChange : MonoBehaviour
     void Update()
     {
         DetectSwipe();
+        RegisterChildren();
     }
 
     void DetectSwipe()
@@ -70,12 +68,27 @@ public class SwipeColorChange : MonoBehaviour
         }
     }
 
+    void RegisterChildren()
+    {
+        foreach (Transform child in transform)
+        {
+            if (!registeredChildren.Contains(child))
+            {
+                childObjects.Add(child);
+                registeredChildren.Add(child);
+                Debug.Log("Added child: " + child.name);
+            }
+        }
+
+        Debug.Log("Total children registered: " + childObjects.Count);
+    }
+
     void HandleSwipe(bool isRightSwipe)
     {
         bool hasBadTag = false;
         foreach (var child in childObjects)
         {
-            if (child.CompareTag("Bad"))
+            if (child != null && child.CompareTag("Bad"))
             {
                 hasBadTag = true;
                 break;
@@ -116,6 +129,8 @@ public class SwipeColorChange : MonoBehaviour
                 ShowCanvas(canvasbad);
             }
         }
+
+        RemoveAllChildren();
     }
 
     void ShowCanvas(GameObject canvas)
@@ -133,5 +148,19 @@ public class SwipeColorChange : MonoBehaviour
     void ChangeColor(Color color)
     {
         GetComponent<Renderer>().material.color = color;
+    }
+
+    void RemoveAllChildren()
+    {
+        foreach (Transform child in childObjects)
+        {
+            if (child != null)
+            {
+                registeredChildren.Remove(child);
+                Destroy(child.gameObject);
+            }
+        }
+        childObjects.Clear();
+        Debug.Log("All children removed.");
     }
 }

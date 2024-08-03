@@ -21,18 +21,26 @@ public class CountDownSystem : MonoBehaviour
 
     IEnumerator StartCountdown()
     {
+        // Pause the game
+        Time.timeScale = 0f;
+
         preCountdownText.gameObject.SetActive(true);
         countdownText.gameObject.SetActive(false);
 
         preCountdownText.text = "3";
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSecondsRealtime(1f);
         preCountdownText.text = "2";
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSecondsRealtime(1f);
         preCountdownText.text = "1";
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSecondsRealtime(1f);
+        preCountdownText.text = "Go!";
+        yield return new WaitForSecondsRealtime(1f);
 
         preCountdownText.gameObject.SetActive(false);
         countdownText.gameObject.SetActive(true);
+
+        // Resume the game
+        Time.timeScale = 1f;
 
         countdownTime = startTimeMinutes * 60; // Convert minutes to seconds
         gameActive = true;
@@ -66,10 +74,10 @@ public class CountDownSystem : MonoBehaviour
     void GameOver()
     {
         gameOver = true;
-        highScoreUI.SetActive(true);
         ScoreManager.instance.CheckAndSaveHighestScore(gameOver);
         countdownText.text = "0:00";
         gameOverCanvas.SetActive(true);
+        highScoreUI.SetActive(true);
         Time.timeScale = 0f; // Stop the game
     }
 
