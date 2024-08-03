@@ -55,6 +55,7 @@ public class SwipeColorChange : MonoBehaviour
                         {
                             if (swipeDirection.x > 0)
                             {
+                                Debug.Log("Right Swipe Detected");
                                 HandleSwipe(true);
                             }
                         }
@@ -62,6 +63,7 @@ public class SwipeColorChange : MonoBehaviour
                         {
                             if (swipeDirection.y < 0)
                             {
+                                Debug.Log("Down Swipe Detected");
                                 HandleSwipe(false);
                             }
                         }
@@ -71,6 +73,7 @@ public class SwipeColorChange : MonoBehaviour
             }
         }
     }
+
 
     void RegisterChildren()
     {
@@ -83,8 +86,6 @@ public class SwipeColorChange : MonoBehaviour
                 Debug.Log("Added child: " + child.name);
             }
         }
-
-        Debug.Log("Total children registered: " + childObjects.Count);
     }
 
     void BadTagCheck()
