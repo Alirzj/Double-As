@@ -16,6 +16,8 @@ public class SwipeColorChange : MonoBehaviour
     private HashSet<Transform> registeredChildren = new HashSet<Transform>();
     private CountDownSystem countdownSystem;
     public bool hasBadTag;
+    public AudioSource correctAudio;
+    public AudioSource wrongAudio;
 
     void Start()
     {
@@ -100,12 +102,11 @@ public class SwipeColorChange : MonoBehaviour
 
     void HandleSwipe(bool isRightSwipe)
     {
-        
-
         if (isRightSwipe)
         {
             if (hasBadTag)
             {
+                wrongAudio.Play();
                 ChangeColor(rightSwipeBadColor);
                 countdownSystem.WrongChoice();
                 ScoreManager.instance.SubtractScore(10);
@@ -113,6 +114,7 @@ public class SwipeColorChange : MonoBehaviour
             }
             else
             {
+                correctAudio.Play();
                 ChangeColor(rightSwipeSafeColor);
                 countdownSystem.CorrectChoice();
                 ScoreManager.instance.AddScore(20);
@@ -123,6 +125,7 @@ public class SwipeColorChange : MonoBehaviour
         {
             if (hasBadTag)
             {
+                correctAudio.Play();
                 ChangeColor(downSwipeBadColor);
                 countdownSystem.CorrectChoice();
                 ScoreManager.instance.AddScore(20);
@@ -130,6 +133,7 @@ public class SwipeColorChange : MonoBehaviour
             }
             else
             {
+                wrongAudio.Play();
                 ChangeColor(downSwipeSafeColor);
                 countdownSystem.WrongChoice();
                 ScoreManager.instance.SubtractScore(10);

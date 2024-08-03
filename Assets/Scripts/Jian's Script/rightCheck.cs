@@ -10,6 +10,9 @@ public class rightCheck : MonoBehaviour
     private CountDownSystem countDownSystem;
     public GameObject canvasbad;
     public GameObject canvasgood;
+    public AudioSource correctAudio;
+    public AudioSource wrongAudio;
+
 
     //private leftCheck checkIn;
 
@@ -50,6 +53,7 @@ public class rightCheck : MonoBehaviour
                 scoreManager.SubtractScore(10);
                 swipe.ShowCanvas(canvasbad);
                 swipe.RemoveAllChildren();
+                wrongAudio.Play();
             }
             else if (swipe.hasBadTag == false)
             {
@@ -57,6 +61,7 @@ public class rightCheck : MonoBehaviour
                 scoreManager.AddScore(20);
                 swipe.ShowCanvas(canvasgood);
                 swipe.RemoveAllChildren();
+                correctAudio.Play();
             }
         }
 
