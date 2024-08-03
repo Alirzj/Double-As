@@ -6,29 +6,18 @@ using UnityEngine;
 public class leftCheck : MonoBehaviour
 {
     public bool bagIn;
-    //private SwipeColorChange swipe;
-
-    //private rightCheck checkOut;
+    private GameObject detectedBag;
 
     // Start is called before the first frame update
     void Start()
     {
-        //checkOut = FindObjectOfType<rightCheck>();
-        //swipe = FindObjectOfType<SwipeColorChange>();
-
+        // Initialization if needed
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (checkOut.bagOut == true)
-        //{
-        //    bagIn = false;
-        //}
-        //else if (checkOut.bagOut == false)
-        //{
-        //    bagIn = true;
-        //}
+        // Any logic that should be checked every frame
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -36,7 +25,7 @@ public class leftCheck : MonoBehaviour
         if (collision.gameObject.tag == "Bag")
         {
             bagIn = true;
-            //swipe.swiped = false;
+            detectedBag = collision.gameObject;
         }
     }
 
@@ -45,6 +34,12 @@ public class leftCheck : MonoBehaviour
         if (collision.gameObject.tag == "Bag")
         {
             bagIn = false;
+            //detectedBag = null;
         }
+    }
+
+    public GameObject GetDetectedBag()
+    {
+        return detectedBag;
     }
 }

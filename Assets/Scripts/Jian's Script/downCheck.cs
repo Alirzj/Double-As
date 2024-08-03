@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class rightCheck : MonoBehaviour
+public class downCheck : MonoBehaviour
 {
-    public bool bagOut;
+    public bool bagDownOut;
     private NewSwipe swipe;
     private ScoreManager scoreManager;
     private CountDownSystem countDownSystem;
@@ -45,7 +45,7 @@ public class rightCheck : MonoBehaviour
         if (collision.gameObject.tag == "Bag")
         {
 
-            bagOut = true;
+            bagDownOut = true;
 
             if (swipe.hasBadTag == true)
             {
@@ -86,7 +86,7 @@ public class rightCheck : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bag")
         {
-            bagOut = false;
+            bagDownOut = false;
         }
     }
 }

@@ -17,7 +17,7 @@ public class Spawner3 : MonoBehaviour
     private double accumulatedWeights;
     private System.Random rand = new System.Random();
     private List<GameObject> spawnedItems = new List<GameObject>();
-    private SwipeColorChange swipeColorChange;
+    private NewSwipe swipeColorChange;
 
     private void Awake()
     {
@@ -29,13 +29,15 @@ public class Spawner3 : MonoBehaviour
 
     private rightCheck checkOut;
     private leftCheck checkIn;
+    private downCheck checkDownOut;
     private bool hasSpawned = false;
 
     void Start()
     {
         checkOut = FindObjectOfType<rightCheck>();
         checkIn = FindObjectOfType<leftCheck>();
-        swipeColorChange = GetComponent<SwipeColorChange>();
+        checkDownOut = FindObjectOfType<downCheck>();
+        swipeColorChange = GetComponent<NewSwipe>();
     }
 
     void Update()
@@ -50,11 +52,17 @@ public class Spawner3 : MonoBehaviour
             hasSpawned = true;
         }
 
-        if (checkOut != null && checkOut.bagOut)
+        if (checkOut.bagOut || checkDownOut.bagDownOut)
         {
             //DestroySpawnedItems();
             hasSpawned = false; // Reset the flag to allow spawning again when bagIn becomes true next time
         }
+
+        //if (checkDownOut != null && checkDownOut.bagDownOut)
+        //{
+        //    //DestroySpawnedItems();
+        //    hasSpawned = false; // Reset the flag to allow spawning again when bagIn becomes true next time
+        //}
     }
 
     private void SpawnRandomItems(Vector2 position)
