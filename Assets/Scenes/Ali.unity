@@ -919,7 +919,7 @@ Transform:
   m_GameObject: {fileID: 780209006}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.64, y: -0.95339596, z: 0}
+  m_LocalPosition: {x: -6.76, y: -0.95339596, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -941,6 +941,8 @@ MonoBehaviour:
   downSwipeBadColor: {r: 0, g: 1, b: 0, a: 1}
   rightSwipeSafeColor: {r: 0, g: 1, b: 0, a: 1}
   downSwipeSafeColor: {r: 1, g: 0, b: 0, a: 1}
+  canvasgood: {fileID: 0}
+  canvasbad: {fileID: 0}
 --- !u!1 &897750454
 GameObject:
   m_ObjectHideFlags: 0
@@ -1623,6 +1625,8 @@ MonoBehaviour:
   downSwipeBadColor: {r: 0, g: 1, b: 0, a: 1}
   rightSwipeSafeColor: {r: 0, g: 1, b: 0, a: 1}
   downSwipeSafeColor: {r: 1, g: 0, b: 0, a: 1}
+  canvasgood: {fileID: 921396670}
+  canvasbad: {fileID: 1432651993}
 --- !u!212 &1497459666
 SpriteRenderer:
   m_ObjectHideFlags: 0

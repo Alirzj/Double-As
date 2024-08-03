@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +10,8 @@ public class SwipeColorChange : MonoBehaviour
     public Color downSwipeBadColor = Color.green; // Color when swiped down and "Bad" tag is found
     public Color rightSwipeSafeColor = Color.green; // Color when swiped right and all tags are "Safe"
     public Color downSwipeSafeColor = Color.red; // Color when swiped down and all tags are "Safe"
-
+    public GameObject canvasgood;
+    public GameObject canvasbad;
     private List<Transform> childObjects = new List<Transform>();
     private CountDownSystem countdownSystem;
 
@@ -20,6 +22,9 @@ public class SwipeColorChange : MonoBehaviour
             childObjects.Add(child);
         }
         countdownSystem = FindObjectOfType<CountDownSystem>();
+
+        canvasbad.SetActive(false);
+        canvasgood.SetActive(false);
     }
 
     void Update()
@@ -84,12 +89,14 @@ public class SwipeColorChange : MonoBehaviour
                 ChangeColor(rightSwipeBadColor);
                 countdownSystem.WrongChoice();
                 ScoreManager.instance.SubtractScore(10);
+                ShowCanvas(canvasbad);
             }
             else
             {
                 ChangeColor(rightSwipeSafeColor);
                 countdownSystem.CorrectChoice();
                 ScoreManager.instance.AddScore(20);
+                ShowCanvas(canvasgood);
             }
         }
         else // Down swipe
@@ -99,14 +106,28 @@ public class SwipeColorChange : MonoBehaviour
                 ChangeColor(downSwipeBadColor);
                 countdownSystem.CorrectChoice();
                 ScoreManager.instance.AddScore(20);
+                ShowCanvas(canvasgood);
             }
             else
             {
                 ChangeColor(downSwipeSafeColor);
                 countdownSystem.WrongChoice();
                 ScoreManager.instance.SubtractScore(10);
+                ShowCanvas(canvasbad);
             }
         }
+    }
+
+    void ShowCanvas(GameObject canvas)
+    {
+        canvas.SetActive(true);
+        StartCoroutine(HideCanvasAfterDelay(canvas, 0.5f));
+    }
+
+    IEnumerator HideCanvasAfterDelay(GameObject canvas, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        canvas.SetActive(false);
     }
 
     void ChangeColor(Color color)
