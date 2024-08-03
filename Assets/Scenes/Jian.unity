@@ -214,6 +214,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bagOut: 0
+  canvasbad: {fileID: 0}
+  canvasgood: {fileID: 0}
 --- !u!1 &648816787
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,7 +465,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1586143969
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1030,6 +1032,10 @@ MonoBehaviour:
   downSwipeBadColor: {r: 0, g: 1, b: 0, a: 1}
   rightSwipeSafeColor: {r: 0, g: 1, b: 0, a: 1}
   downSwipeSafeColor: {r: 1, g: 0, b: 0, a: 1}
+  canvasgood: {fileID: 0}
+  canvasbad: {fileID: 0}
+  childObjects: []
+  hasBadTag: 0
 --- !u!212 &1497459666
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1122,7 +1128,8 @@ MonoBehaviour:
     Prefab: {fileID: 7425257950817842024, guid: 26acae0823a89cd4da26713942e94f14, type: 3}
     Chance: 17.7
     _weight: 0
-  objectNum: 5
+  minObjectNum: 1
+  maxObjectNum: 5
 --- !u!1 &1510463121
 GameObject:
   m_ObjectHideFlags: 0
@@ -1203,7 +1210,7 @@ Transform:
   m_GameObject: {fileID: 1510463121}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: -0.95339596, z: 0}
+  m_LocalPosition: {x: -11.7, y: -0.95339596, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1389,6 +1396,7 @@ MonoBehaviour:
   preCountdownText: {fileID: 2013276056}
   countdownText: {fileID: 1060075604}
   gameOverCanvas: {fileID: 1858520675}
+  highScoreUI: {fileID: 0}
 --- !u!4 &1736597280
 Transform:
   m_ObjectHideFlags: 0
