@@ -63,11 +63,13 @@ public class ScoreManager : MonoBehaviour
             if (currentScore > highestScore)
             {
                 highestScore = currentScore;
+                Debug.Log(highestScore.ToString());
                 SaveScore();
             }
             UpdateScoreText(); // Ensure UI is updated when the game is over
         }
     }
+
 
     void SaveScore()
     {
