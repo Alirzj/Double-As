@@ -8,7 +8,7 @@ public class ScoreManager : MonoBehaviour
     public TextMeshProUGUI highestScoreText; // Reference to the TextMeshProUGUI component for displaying the highest score
     public TextMeshProUGUI FinalScoreText;
 
-    private int currentScore;
+    public int currentScore;
     private int FinalScore;
     private int highestScore;
 

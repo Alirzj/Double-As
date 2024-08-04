@@ -6,7 +6,7 @@ public class BagDestroy1 : MonoBehaviour
 {
     public GameObject bag1;
     public GameObject bag2;
-    public float conveyorSpeed = 2.0f;
+    public float conveyorSpeed;
     public Transform spawnPoint;
     public Transform teleportPoint;
     public Collider2D endCollider;
@@ -14,14 +14,18 @@ public class BagDestroy1 : MonoBehaviour
     public GameObject currentBag;
     public bool bag1MoveRight = true;
     public bool bag2MoveRight = true;
+    private ScoreManager scoreManager;
+
     private void Start()
     {
         currentBag = bag1;
+        scoreManager = FindObjectOfType<ScoreManager>();
     }
     private void Update()
     {
         MoveBag();
         UpdateCurrentBag();
+        ScoreToSpeed();
     }
     public void MoveBag()
     {
@@ -98,4 +102,19 @@ public class BagDestroy1 : MonoBehaviour
     {
         return currentBag;
     }
+
+    private void ScoreToSpeed()
+    {
+        // Calculate the number of 50-point increments in the current score
+        int increments = scoreManager.currentScore / 50;
+
+        // Calculate the new conveyor speed based on the score
+        float newSpeed = 3.0f + (increments * 0.5f);
+
+        // Clamp the speed to a maximum value of 6.0f
+        conveyorSpeed = Mathf.Min(newSpeed, 6.0f);
+    }
+
+
+
 }

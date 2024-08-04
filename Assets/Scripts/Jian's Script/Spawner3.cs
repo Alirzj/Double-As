@@ -64,11 +64,10 @@ public class Spawner3 : MonoBehaviour
     {
         Item randomItem = items[GetRandomItemIndex()];
         Quaternion randomRotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
-        GameObject spawnedItem = Instantiate(randomItem.Prefab, position, randomRotation, transform);
+        GameObject spawnedItem = Instantiate(randomItem.Prefab, transform.position + (Vector3)position, randomRotation, transform);
         spawnedItems.Add(spawnedItem);
-
-        Debug.Log("<color=" + randomItem.Name + ">?</color> Chance: <b>" + randomItem.Chance + "</b>%");
     }
+
 
     private int GetRandomItemIndex()
     {
@@ -106,15 +105,20 @@ public class Spawner3 : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        // Draw the spawn area box
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireCube(transform.position, new Vector3(spawnAreaSize.x, spawnAreaSize.y, 0));
 
+        // Draw example spawn points if showSpawnPoints is true
         if (showSpawnPoints)
         {
             Gizmos.color = Color.red;
-            for (int i = 0; i < 10; i++) // Draw some example spawn points
+            for (int i = 0; i < 10; i++) // Draw 10 example spawn points
             {
-                Vector2 spawnPosition = new Vector2(Random.Range(-spawnAreaSize.x / 2f, spawnAreaSize.x / 2f), Random.Range(-spawnAreaSize.y / 2f, spawnAreaSize.y / 2f));
+                Vector2 spawnPosition = new Vector2(
+                    Random.Range(-spawnAreaSize.x / 2f, spawnAreaSize.x / 2f),
+                    Random.Range(-spawnAreaSize.y / 2f, spawnAreaSize.y / 2f)
+                );
                 Gizmos.DrawSphere(transform.position + (Vector3)spawnPosition, 0.1f);
             }
         }

@@ -10,7 +10,20 @@ public class CountDownSystem : MonoBehaviour
     public GameObject gameOverCanvas; // Canvas to activate when countdown ends
     public GameObject highScoreUI; // UI element for displaying high score
     public AudioSource tickAudio; // AudioSource for the ticking sound
+    public GameObject TimesUPtext;
+    public AudioSource Alarm;
 
+    private NewSwipe swipe;
+
+    public Animator Ogu;
+    public Animator Tappy;
+    public GameObject OguObject;
+    public GameObject TappyObject;
+
+    public GameObject rightChecker;
+    public GameObject spawnManager;
+
+    public BagDestroy1 bagDestroy;
     private bool gameOver = false;
     private float countdownTime;
     private bool gameActive = false;
@@ -18,6 +31,8 @@ public class CountDownSystem : MonoBehaviour
     void Start()
     {
         StartCoroutine(StartCountdown());
+        swipe = FindObjectOfType<NewSwipe>();
+
     }
 
     IEnumerator StartCountdown()
@@ -83,17 +98,39 @@ public class CountDownSystem : MonoBehaviour
 
     void GameOver()
     {
+        StartCoroutine(GameOverRoutine());
+    }
+
+    private IEnumerator GameOverRoutine()
+    {
+        rightChecker.SetActive(false);
+        spawnManager.SetActive(false);
+        //swipe.ToggleSwipeDetection(false);
+        bagDestroy.conveyorSpeed = 0;
+
+        tickAudio.volume = 0f;
+        Alarm.Play();
         gameOver = true;
+
+        // Display TimesUPtext for 1 second
+        TimesUPtext.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        TimesUPtext.SetActive(false);
+        //playMasscotAnimation();
+        TappyObject.SetActive(true);
+        OguObject.SetActive(true);
+
+        Ogu.SetTrigger("Play");
+        Tappy.SetTrigger("Play");
+
+        // Continue with the rest of the GameOver logic
         ScoreManager.instance.CheckAndSaveHighestScore(gameOver);
         countdownText.text = "0:00";
         gameOverCanvas.SetActive(true);
         highScoreUI.SetActive(true);
-        Time.timeScale = 0f; // Stop the game
 
-        if (tickAudio.isPlaying)
-        {
-            tickAudio.Stop();
-        }
+        // Finally, stop the game time
+        //Time.timeScale = 0f; // Stop the game
     }
 
     public void CorrectChoice()
@@ -104,7 +141,7 @@ public class CountDownSystem : MonoBehaviour
 
     public void WrongChoice()
     {
-        countdownTime -= 10f; // Lose 10 seconds for a wrong choice
+        countdownTime -= 20f; // Lose 10 seconds for a wrong choice
         UpdateCountdownText();
 
         if (countdownTime <= 0)
@@ -114,4 +151,13 @@ public class CountDownSystem : MonoBehaviour
             GameOver();
         }
     }
+
+    //public void playMasscotAnimation()
+    //{
+    //    TappyObject.SetActive(true);
+    //    OguObject.SetActive(true);
+
+    //    Ogu.SetTrigger("Play");
+    //    Tappy.SetTrigger("Play");
+    //}
 }

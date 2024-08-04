@@ -17,7 +17,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - gameover
   - 
   - 
   - 
@@ -55,4 +55,7 @@ TagManager:
     locked: 0
   - name: Items
     uniqueID: 646860609
+    locked: 0
+  - name: Mascot
+    uniqueID: 985310635
     locked: 0

@@ -63,7 +63,7 @@ public class downCheck : MonoBehaviour
             {
                 WrongCharacterAnimator.SetTrigger("Start");
                 countDownSystem.WrongChoice();
-                scoreManager.SubtractScore(10);
+                scoreManager.SubtractScore(0);
                 swipe.ShowCanvas(canvasbad);
                 swipe.RemoveAllChildren();
                 wrongAudio.Play();
